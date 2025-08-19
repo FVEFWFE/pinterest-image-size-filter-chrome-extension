@@ -1,0 +1,94 @@
+/* Content Script Styles for Pinterest Aspect Ratio Filter */
+
+/* Hide filter */
+.parf-hide {
+    display: none !important;
+}
+
+/* Blur filter */
+.parf-blur {
+    filter: blur(15px) !important;
+    transition: filter 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.parf-blur::after {
+    content: "🔒" !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    font-size: 24px !important;
+    z-index: 10 !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.parf-blur:hover {
+    filter: blur(5px) !important;
+}
+
+/* Dim filter */
+.parf-dim {
+    opacity: 0.15 !important;
+    transition: opacity 0.3s ease !important;
+    position: relative !important;
+}
+
+.parf-dim::after {
+    content: "Filtered" !important;
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+    color: white !important;
+    padding: 4px 8px !important;
+    border-radius: 4px !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    z-index: 10 !important;
+    pointer-events: none !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+.parf-dim:hover {
+    opacity: 0.5 !important;
+}
+
+/* Ensure filtered elements maintain their layout space when dimmed or blurred */
+[data-parf-filtered="true"] {
+    min-height: 100px !important;
+    min-width: 100px !important;
+}
+
+/* Animation for filter application */
+@keyframes parfFilterApply {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(0.98);
+    }
+}
+
+/* Special handling for Pinterest grid items to prevent layout shifts */
+[data-grid-item][data-parf-filtered="true"].parf-hide {
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Smooth transitions when filters are applied/removed */
+[data-parf-filtered] {
+    transition: all 0.3s ease !important;
+}

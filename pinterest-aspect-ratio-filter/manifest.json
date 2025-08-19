@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "Pinterest Aspect Ratio Filter",
+  "version": "1.0.0",
+  "description": "Filter Pinterest images by aspect ratio (16:9, 1:1, 9:16, etc.)",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "*://*.pinterest.com/*",
+    "*://*.pinimg.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.pinterest.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
