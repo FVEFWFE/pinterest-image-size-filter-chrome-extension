@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinterest Aspect Ratio Filter</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Pinterest Aspect Ratio Filter</h1>
+        
+        <div class="filter-section">
+            <h2>Filter Mode</h2>
+            <div class="filter-mode">
+                <label>
+                    <input type="radio" name="filterMode" value="hide" checked>
+                    <span>Hide</span>
+                </label>
+                <label>
+                    <input type="radio" name="filterMode" value="blur">
+                    <span>Blur</span>
+                </label>
+                <label>
+                    <input type="radio" name="filterMode" value="dim">
+                    <span>Dim</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="ratio-section">
+            <h2>Allowed Aspect Ratios</h2>
+            
+            <div class="preset-ratios">
+                <h3>Common Ratios</h3>
+                <label class="ratio-option">
+                    <input type="checkbox" data-ratio="16:9" data-value="1.778">
+                    <span>16:9 (YouTube/Widescreen)</span>
+                </label>
+                <label class="ratio-option">
+                    <input type="checkbox" data-ratio="4:3" data-value="1.333">
+                    <span>4:3 (Traditional TV)</span>
+                </label>
+                <label class="ratio-option">
+                    <input type="checkbox" data-ratio="1:1" data-value="1">
+                    <span>1:1 (Square)</span>
+                </label>
+                <label class="ratio-option">
+                    <input type="checkbox" data-ratio="4:5" data-value="0.8">
+                    <span>4:5 (Instagram Portrait)</span>
+                </label>
+                <label class="ratio-option">
+                    <input type="checkbox" data-ratio="9:16" data-value="0.563">
+                    <span>9:16 (Stories/Reels)</span>
+                </label>
+                <label class="ratio-option">
+                    <input type="checkbox" data-ratio="2:3" data-value="0.667">
+                    <span>2:3 (Pinterest Standard)</span>
+                </label>
+                <label class="ratio-option">
+                    <input type="checkbox" data-ratio="3:4" data-value="0.75">
+                    <span>3:4 (Portrait)</span>
+                </label>
+                <label class="ratio-option">
+                    <input type="checkbox" data-ratio="5:4" data-value="1.25">
+                    <span>5:4 (Medium Format)</span>
+                </label>
+            </div>
+
+            <div class="custom-ratio">
+                <h3>Custom Ratio</h3>
+                <div class="custom-input">
+                    <input type="number" id="customWidth" placeholder="Width" min="1" max="100">
+                    <span>:</span>
+                    <input type="number" id="customHeight" placeholder="Height" min="1" max="100">
+                    <button id="addCustom">Add</button>
+                </div>
+                <div id="customRatiosList"></div>
+            </div>
+        </div>
+
+        <div class="tolerance-section">
+            <h2>Tolerance</h2>
+            <div class="tolerance-control">
+                <input type="range" id="tolerance" min="0" max="20" value="5" step="1">
+                <span id="toleranceValue">5%</span>
+            </div>
+            <p class="tolerance-hint">Allow slight variations in aspect ratio</p>
+        </div>
+
+        <div class="controls">
+            <button id="toggleFilter" class="toggle-btn active">Filter Active</button>
+            <button id="saveSettings" class="save-btn">Save Settings</button>
+        </div>
+
+        <div class="status" id="status"></div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>
